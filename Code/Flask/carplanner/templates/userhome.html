@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block content %}
+
+<br>
+
+<div class="bg-transparent">
+  <div align='center'>
+    <h1 >Bine ai venit, {{nume}}!</h1>
+    <img align='center' src="{{ url_for('static', filename='profile_pics/' + user.imagineProfil) }}">
+    <br><br>
+    <a class="btn btn-primary" href="{{ url_for('useri.updateuser', email=current_user.email)}}" role="button">Editare Cont</a>
+    <a class="btn btn-success" href="{{ url_for('masini.addVehicle', email=current_user.email)}}" role="button">Adauga Vehicul</a>
+  </div>
+</div>
+
+<div class="container jumbotron bg-transparent">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Item</th>
+        <th scope="col">Marca</th>
+        <th scope="col">Model</th>
+        <th scope="col">Nr. Inmatriculare</th>
+        <th scope="col">Kilometraj</th>
+        <th scope="col">Urm. Scadent (Data)</th>
+        <th scope="col">Urm. Scadent (Km)</th>
+        <th scope="col">Detalii</th>
+        <th scope="col">Editeaza</th>
+        <th scope="col">Sterge</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for masina in masini %}
+        <tr>
+          <th scope="row">{{ masina["id"]}}</th>
+          <td>{{ masina["marcaMasina"]}}</td>
+          <td>{{ masina["modelMasina"]}}</td>
+          <td>{{ masina["numarInmatriculare"]}}</td>
+          <td>{{ masina["kilometraj"]}}</td>
+          <td>{{ masina["scadentData"]}}</td>
+          <td>{{ masina["scadentKm"]}}</td>
+          <td><a href="{{ url_for('masini.detailsVehicle', email=current_user.email, IDMasina=masina['IDMasina'])}}">Detalii</a></td>
+          <td><a href="{{ url_for('masini.editVehicle', email=current_user.email, IDMasina=masina['IDMasina'])}}">Editeaza</a></td>
+          <td><a href="{{ url_for('masini.removeVehicle', email=current_user.email, IDMasina=masina['IDMasina'])}}">Sterge</a></td>
+
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="/static/defaultscadent.css"/>
+<!--Fontawesome CDN-->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+
+
+<div class="container">
+	<div class="d-flex justify-content-center h-100">
+		<div class="card">
+			<div class="card-header">
+				<h3>Selecteaza scadentele default pe care doresti sa le adaugi vehiculului</h3>
+			</div>
+			<div class="card-body card-body-custom">
+				<form method="POST">
+          {{ form.hidden_tag() }}
+          {{ form.csrf_token }}
+
+				<div class="check-box">
+					{{ form.default1(class_="checkmark") }}
+					<p class="">Ulei si Filtre</p>
+				</div>
+
+				<div class="check-box">
+					{{ form.default2(class_="checkmark") }}
+					<p class="">Distributie</p>
+				</div>
+
+				<div class="check-box">
+					{{ form.default3(class_="checkmark") }}
+					<p class="">Elemente Franare</p>
+				</div>
+
+				<div class="check-box">
+					{{ form.default4(class_="checkmark") }}
+					<p class="">Baterie</p>
+				</div>
+
+          <div class="form-group">
+            {{ form.submit(class_="btn float-right login_btn") }}
+					</div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+{% endblock content %}
